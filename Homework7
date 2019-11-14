@@ -1,0 +1,218 @@
+ublic static int readGrades(int[] grades){
+	System.out.println("Enter a grade : ");
+	int x = scnr.nextInt();
+	int i = 1;
+	while(x!=-1)
+	{
+	grades[i] = x;
+	i = i + 1;
+	System.out.println("Enter a grade : ");
+	x = scnr.nextInt();
+	}
+	return i;
+	}
+
+ public static int sum(int[] arr){
+	 int sum = 0;
+	 for (int i =0; i<arr.length;i++){
+		 sum +=arr[i];
+		 
+ }
+ return sum;
+ }
+ 
+ public static int sum(int[] arr, int firstIndex, int lastIndex ){
+	 int sum = 0;
+	 if ((firstIndex < lastIndex) && (firstIndex < arr.length) && (lastIndex < arr.length) && (firstIndex > -1)){
+	 
+	 for (int i = firstIndex; i<= lastIndex; i++){
+		 sum +=arr[i];
+	 }
+ }
+	 else {
+		 return -666;
+	 }
+ return sum;
+ }
+	 
+	 public static double average(int[] arr) {
+		 int count = 0;
+		double sum = 0;
+		for (int i = 0; i < arr.length; i++) {
+			sum += arr[i];
+			count++;
+		}
+		
+		
+		return sum / count;
+ }
+    
+    public static int maxValue(int[] arr) {
+    	int maxValue = 0;
+    	for (int i = 0; i < arr.length; i ++) {
+    		if (arr[i] > maxValue) {
+    			maxValue = arr[i];
+    		}
+    	}
+   return maxValue;
+   
+ 
+    }
+    public static int maxValue(int[] arr, int firstIndex, int lastIndex){
+    	int maxValue = 0;
+    	if((firstIndex < lastIndex) && (firstIndex < arr.length) && (lastIndex < arr.length) && (firstIndex > -1))  {
+    		for(int i = firstIndex; i < lastIndex; i ++) {
+    			if(arr[i] > maxValue) {
+    				maxValue = arr[i];
+    			}
+    		}
+    	}
+    	else {
+    		return -666;
+    	}
+    	return maxValue;
+    }
+    public static int indexOfFirstMaxValue(int[] arr) {
+    	int indexOfFirstMaxValue = 0;
+    	int firstMaxValue = arr[0];
+    	
+    	for(int i = 0; i < arr.length; i++) {
+    		if(arr[i] > firstMaxValue) {
+    			firstMaxValue = arr[i];
+    			indexOfFirstMaxValue = i;
+    		}
+    	}
+    	return indexOfFirstMaxValue;
+    }
+    
+	public static int minValue (int[] arr) {
+		int minValue = arr[0];
+		for(int i = 0; i < arr.length; i++) {
+			if(arr[i] < minValue) {
+				minValue = arr[i];
+			}
+			
+		}
+		return minValue;
+		
+	}
+public static int minValue(int[] arr, int firstIndex, int lastIndex) {
+	int minValue = arr[0];
+	if((firstIndex < lastIndex) && (firstIndex < arr.length) && (lastIndex < arr.length) && (firstIndex > -1))  {
+		for(int i = firstIndex; i < lastIndex; i++) {
+			if(arr[i] < minValue) {
+				minValue = arr[i];
+				
+			}
+		}
+	}
+	else {
+		return -666;
+	}
+	return minValue;
+	
+}
+public static int indexOfFirstMinValue(int[] arr) {
+	int indexOfFirstMinValue = 0;
+	int firstMinValue = arr[0];
+	for (int i = 0; i < arr.length; i++) {
+		if(arr[i] < firstMinValue) {
+			firstMinValue = arr[i];
+			indexOfFirstMinValue = i;
+		}
+	}
+	return indexOfFirstMinValue;
+}
+public static int numberOfBelowAverageElements(int[] arr){
+	int numberOfBelowAverageElements = 0;
+	double average = 0.0;
+	int sum = 0;
+	int count = 0;
+	
+	for(int i =0; i< arr.length; i++){
+		sum += arr[i];
+		count++;
+	}
+	average = sum / count;
+	 for (int i = 0; i < arr.length; i++){
+		 
+		if(arr[i] < average) {
+			numberOfBelowAverageElements++;
+		}
+	}
+	return numberOfBelowAverageElements;
+}
+
+public static int numberOfAboveAverageElements(int[] arr){
+	int numberOfAboveAverageElements = 0;
+	double average = 0.0;
+	int sum = 0;
+	int count = 0;
+	
+	for(int i =0; i< arr.length; i++){
+		sum += arr[i];
+		count++;
+	}
+	average = sum / count;
+	 for (int i = 0; i < arr.length; i++){
+		 
+		if(arr[i] > average) {
+			numberOfAboveAverageElements++;
+		}
+	}
+	return numberOfAboveAverageElements;
+}
+public static void rotateElements(int[] arr){
+	int tempVal;
+	tempVal = arr[arr.length - 1];
+	
+	for (int i = arr.length -1 ; i >=1; i--){
+		arr[i] = arr[i-1];
+	}
+    arr[0] = tempVal;	
+}
+public static void rotateElements(int[] arr, int rotationCount){
+	 
+	int tempVal = arr[arr.length - 1];
+	
+	for (int i = arr.length - rotationCount ; i > rotationCount; i--){
+		if(i + rotationCount < arr.length){
+			arr[i + rotationCount] = arr[i];
+		}
+		arr[0 + rotationCount -2] = tempVal;
+	}	
+}
+public static void reverseArray(int[] arr) {
+	int i; 
+	int a;
+	int s = arr.length;
+	for (i = 0; i < s / 2; i++) {
+	a = arr[i];
+	arr[i] = arr[s - i - 1];
+	arr[s - i - 1] = a;
+		}
+}
+	
+	public static void main(String[] args){
+		System.out.println("Enter a grade : ");
+		int x = scnr.nextInt();
+		while(x!=-1){
+		int [] grade =new int[50];
+		grade[0]=x;
+		int count =readGrades(grade);
+		int []grades=new int[count];
+		for(int i=0;i<count;i++)
+		{
+		grades[i]=grade[i];
+		}
+		System.out.println("Number Of Grades = "+ count);
+		  
+		int max = maxValue(grades);
+		System.out.println("Maximum Grade = "+ max);
+		
+		int min = minValue(grades);
+		System.out.println("Minimum Grade = " + min);
+		System.out.println("");
+	}
+	}
+	}
