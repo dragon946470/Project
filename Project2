@@ -1,0 +1,158 @@
+import java.util.Scanner;
+
+public class ElizaDriver {
+	private Scanner input = new Scanner(System.in);
+
+	private String inputMsg;
+	
+	
+	public void printWelcomeMsg()
+
+	{
+
+	System.out.println("ELIZA: Hello, my name is Eliza. What is your name?");
+
+	System.out.print("USER: ");
+
+	String name = input.nextLine();
+
+	checkIfEXIT(name);
+
+	System.out.println("ELIZA: Hello " + name + " Tell me what is on your mind today in 1 sentence.");
+
+	System.out.print("USER: ");
+
+	inputMsg = input.nextLine();
+
+	checkIfEXIT(inputMsg);
+
+	}
+	public void displayNextPrompt()
+
+	{
+
+	String inputArr[] = inputMsg.split(" ");
+
+	PromptBank prompt = new PromptBank();
+
+	if(inputMsg.charAt(inputMsg.length()-1) == '?')
+
+	{
+
+	String blank1 = inputArr[0];
+
+	String blank2 = inputArr[inputArr.length - 1].substring(0, (inputArr[inputArr.length - 1]).length() -1 );
+
+	prompt.setBlank1(blank1);
+
+	prompt.setBlank2(blank2);
+
+	prompt.populateQuestionsArray();
+
+	String question = prompt.getRandomQuestionTrunk();
+
+	System.out.println("ELIZA: " + question);
+
+	}
+
+	else if(inputMsg.charAt(inputMsg.length()-1) == '!')
+
+	{
+
+	String blank1 = inputArr[0];
+
+	String blank2 = inputArr[inputArr.length - 1].substring(0, (inputArr[inputArr.length - 1]).length() -1 );
+
+	prompt.setBlank1(blank1);
+
+	prompt.setBlank2(blank2);
+
+	prompt.populateStatementsArray();
+
+	String statement = prompt.getRandomStatementTrunk();
+
+	System.out.println("ELIZA: WOW! Dramatic! " + statement);
+
+	}
+
+	else
+
+	{
+
+	String blank1 = inputArr[0];
+
+	String blank2 = inputArr[inputArr.length - 1];
+
+	if(inputMsg.charAt(inputMsg.length()-1) == '.')
+
+	blank2 = inputArr[inputArr.length - 1].substring(0, (inputArr[inputArr.length - 1]).length() -1 );
+
+	prompt.setBlank1(blank1);
+
+	prompt.setBlank2(blank2);
+
+	prompt.populateStatementsArray();
+
+	String statement = prompt.getRandomStatementTrunk();
+
+	System.out.println("ELIZA: " + statement);
+
+	}
+
+	System.out.print("USER: ");
+
+	inputMsg = input.nextLine();
+
+	checkIfEXIT(inputMsg);
+
+	}
+	
+	public void checkIfEXIT(String inputMsg)
+
+	{
+
+	if(inputMsg.equals("EXIT"))
+
+	{
+
+	System.out.println("ELIZA: Do you want to run the session again? ");
+
+	System.out.print("USER: ");
+
+	String choice = input.nextLine();
+
+	if(choice.equalsIgnoreCase("yes"))
+
+	printWelcomeMsg();
+
+	else
+
+	{
+
+	System.out.println("ELIZA: Goodbye, until next time");
+
+	System.exit(0);
+
+	}
+
+	}
+
+	}
+
+	
+
+	public static void main(String args[])
+
+	{
+
+	ElizaDriver eliza = new ElizaDriver();
+
+	eliza.printWelcomeMsg();
+
+	while(true)
+
+	eliza.displayNextPrompt();
+
+	}
+
+	}
